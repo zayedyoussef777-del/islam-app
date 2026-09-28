@@ -1,0 +1,1015 @@
+<html lang="de">
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meine Islam App</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8fa;
+    color: #202124;
+    min-height: 100vh;
+}
+
+/* =========================
+   OBERE LEISTE
+========================= */
+
+.header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.header-btn {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    background: #f1f3f5;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.header-btn:hover {
+    background: #e5e7eb;
+}
+
+/* =========================
+   STARTSEITE
+========================= */
+
+.home {
+    max-width: 900px;
+    margin: auto;
+    padding: 45px 20px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.welcome h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #777;
+    font-size: 17px;
+}
+
+/* Karten */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    min-height: 190px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 22px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.card-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 22px;
+}
+
+.card p {
+    margin-top: 7px;
+    color: #888;
+}
+
+/* =========================
+   SEITEN
+========================= */
+
+.page {
+    display: none;
+    min-height: calc(100vh - 75px);
+}
+
+.page.active {
+    display: block;
+}
+
+.back {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 20px;
+}
+
+/* =========================
+   QURAN
+========================= */
+
+.quran {
+    background: #18181a;
+    color: #eeeeee;
+    min-height: calc(100vh - 75px);
+    font-family: "Noto Naskh Arabic", "Amiri", serif;
+}
+
+.quran-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 25px;
+    color: #858589;
+    font-size: 20px;
+}
+
+.quran-content {
+    width: min(900px, 94%);
+    margin: auto;
+    text-align: center;
+}
+
+.quran-back {
+    color: #aaa;
+    position: absolute;
+    left: 20px;
+    top: 95px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Überschrift */
+
+.surah-title {
+    max-width: 700px;
+    margin: 45px auto 55px;
+    padding: 18px 20px;
+
+    border: 1px solid #77777c;
+
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.4;
+
+    position: relative;
+}
+
+.surah-title::before,
+.surah-title::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #77777c;
+    font-size: 25px;
+}
+
+.surah-title::before {
+    left: 25px;
+}
+
+.surah-title::after {
+    right: 25px;
+}
+
+/* Basmala */
+
+.basmala {
+    font-size: clamp(34px, 6vw, 52px);
+    margin-bottom: 35px;
+    line-height: 1.8;
+}
+
+/* Verse */
+
+.ayah {
+    font-size: clamp(30px, 5.5vw, 48px);
+    line-height: 2.2;
+    margin-bottom: 12px;
+}
+
+.ayah-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #777;
+    border-radius: 50%;
+
+    color: #bbb;
+    font-size: 18px;
+
+    margin: 0 7px;
+}
+
+/* Unterseite */
+
+.quran-bottom {
+    max-width: 900px;
+    width: 94%;
+    margin: 100px auto 30px;
+
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+}
+
+.page-number {
+    border: 1px solid #666;
+    border-radius: 25px;
+    padding: 8px 25px;
+}
+
+/* =========================
+   ANDERE SEITEN
+========================= */
+
+.simple-page {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.simple-page h1 {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.simple-box {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #e5e5e5;
+}
+
+/* =========================
+   EINSTELLUNGEN
+========================= */
+
+.settings {
+    max-width: 700px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.setting {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+    border: 1px solid #e5e5e5;
+}
+
+.setting-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.language-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.language-buttons button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #eef0f2;
+    font-size: 16px;
+}
+
+.language-buttons button:hover {
+    background: #dfe3e6;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .header-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    .home {
+        padding: 30px 15px;
+    }
+
+    .welcome h1 {
+        font-size: 27px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .card {
+        min-height: 150px;
+        padding: 15px;
+        border-radius: 17px;
+    }
+
+    .card-icon {
+        font-size: 38px;
+    }
+
+    .card h2 {
+        font-size: 17px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    .quran-top {
+        font-size: 16px;
+        padding: 22px 15px;
+    }
+
+    .quran-content {
+        width: 94%;
+    }
+
+    .surah-title {
+        margin: 30px auto 38px;
+        padding: 14px 10px;
+    }
+
+    .surah-title::before {
+        left: 8px;
+    }
+
+    .surah-title::after {
+        right: 8px;
+    }
+
+    .ayah {
+        line-height: 2;
+        margin-bottom: 5px;
+    }
+
+    .ayah-number {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+        margin: 0 3px;
+    }
+
+    .quran-bottom {
+        margin-top: 60px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     OBERE LEISTE
+========================= -->
+
+<header class="header">
+
+    <div class="logo" id="appName">
+        Meine Islam App
+    </div>
+
+    <div class="header-buttons">
+
+        <!-- Einstellungen -->
+        <button class="header-btn"
+                onclick="openPage('settingsPage')">
+            ⚙️
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     STARTSEITE
+========================= -->
+
+<section id="homePage" class="page active">
+
+    <div class="home">
+
+        <div class="welcome">
+
+            <h1 id="welcomeTitle">
+                Willkommen
+            </h1>
+
+            <p id="welcomeText">
+                Wähle aus, was du heute lesen oder machen möchtest.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <!-- QURAN -->
+            <div class="card"
+                 onclick="openPage('quranPage')">
+
+                <div class="card-icon">📖</div>
+
+                <h2 id="quranText">
+                    Qur'an
+                </h2>
+
+                <p>القرآن الكريم</p>
+
+            </div>
+
+
+            <!-- ADHKAR -->
+            <div class="card"
+                 onclick="openPage('adhkarPage')">
+
+                <div class="card-icon">🤲</div>
+
+                <h2 id="adhkarText">
+                    Adhkar
+                </h2>
+
+                <p>الأذكار</p>
+
+            </div>
+
+
+            <!-- SCHLAFEN -->
+            <div class="card"
+                 onclick="openPage('sleepPage')">
+
+                <div class="card-icon">🌙</div>
+
+                <h2 id="sleepText">
+                    Schlafen
+                </h2>
+
+                <p>أذكار النوم</p>
+
+            </div>
+
+
+            <!-- GEBETE -->
+            <div class="card"
+                 onclick="openPage('prayerPage')">
+
+                <div class="card-icon">🕌</div>
+
+                <h2 id="prayerText">
+                    Gebete
+                </h2>
+
+                <p>الصلاة</p>
+
+            </div>
+
+
+            <!-- TASBIH -->
+            <div class="card"
+                 onclick="openPage('tasbihPage')">
+
+                <div class="card-icon">📿</div>
+
+                <h2 id="tasbihText">
+                    Tasbih
+                </h2>
+
+                <p>التسبيح</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     QURAN
+========================= -->
+
+<section id="quranPage" class="page quran">
+
+    <button class="quran-back"
+            onclick="goHome()">
+        ←
+    </button>
+
+    <div class="quran-top">
+
+        <span>
+            الجزء الأول
+        </span>
+
+        <span>
+            الفاتحة
+        </span>
+
+    </div>
+
+
+    <div class="quran-content">
+
+        <div class="surah-title">
+            سُورَةُ الْفَاتِحَةِ
+        </div>
+
+
+        <div class="basmala">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </div>
+
+
+        <div class="ayah">
+
+            الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+
+            <span class="ayah-number">١</span>
+
+        </div>
+
+
+        <div class="ayah">
+
+            الرَّحْمَٰنِ الرَّحِيمِ
+
+            <span class="ayah-number">٢</span>
+
+        </div>
+
+
+        <div class="ayah">
+
+            مَالِكِ يَوْمِ الدِّينِ
+
+            <span class="ayah-number">٣</span>
+
+        </div>
+
+
+        <div class="ayah">
+
+            إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+
+            <span class="ayah-number">٤</span>
+
+        </div>
+
+
+        <div class="ayah">
+
+            اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+
+            <span class="ayah-number">٥</span>
+
+        </div>
+
+
+        <div class="ayah">
+
+            صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+
+            <span class="ayah-number">٦</span>
+
+        </div>
+
+
+        <div class="ayah">
+
+            غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ
+            وَلَا الضَّالِّينَ
+
+            <span class="ayah-number">٧</span>
+
+        </div>
+
+
+        <div class="quran-bottom">
+
+            <span>
+                الفاتحة
+            </span>
+
+            <span class="page-number">
+                الجزء ١ &nbsp; | &nbsp; ١
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ADHKAR
+========================= -->
+
+<section id="adhkarPage" class="page">
+
+    <div class="simple-page">
+
+        <button class="back"
+                onclick="goHome()">
+            ← Zurück
+        </button>
+
+        <h1>🤲 Adhkar</h1>
+
+        <div class="simple-box">
+            سُبْحَانَ اللَّهِ
+        </div>
+
+        <div class="simple-box">
+            الْحَمْدُ لِلَّهِ
+        </div>
+
+        <div class="simple-box">
+            اللَّهُ أَكْبَرُ
+        </div>
+
+        <div class="simple-box">
+            لَا إِلَٰهَ إِلَّا اللَّهُ
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCHLAFEN
+========================= -->
+
+<section id="sleepPage" class="page">
+
+    <div class="simple-page">
+
+        <button class="back"
+                onclick="goHome()">
+            ← Zurück
+        </button>
+
+        <h1>🌙 Schlafen</h1>
+
+        <div class="simple-box">
+
+            بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا
+
+        </div>
+
+        <div class="simple-box">
+
+            آيَةُ الْكُرْسِيِّ
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     GEBETE
+========================= -->
+
+<section id="prayerPage" class="page">
+
+    <div class="simple-page">
+
+        <button class="back"
+                onclick="goHome()">
+            ← Zurück
+        </button>
+
+        <h1>🕌 Gebete</h1>
+
+        <div class="simple-box">
+            فجر — Fajr
+        </div>
+
+        <div class="simple-box">
+            ظهر — Dhuhr
+        </div>
+
+        <div class="simple-box">
+            عصر — Asr
+        </div>
+
+        <div class="simple-box">
+            مغرب — Maghrib
+        </div>
+
+        <div class="simple-box">
+            عشاء — Isha
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TASBIH
+========================= -->
+
+<section id="tasbihPage" class="page">
+
+    <div class="simple-page">
+
+        <button class="back"
+                onclick="goHome()">
+            ← Zurück
+        </button>
+
+        <h1>📿 Tasbih</h1>
+
+        <div class="simple-box"
+             style="text-align:center">
+
+            <div id="counter"
+                 style="font-size:60px;margin:20px">
+                0
+            </div>
+
+            <button onclick="increaseTasbih()"
+                    style="
+                    padding:18px 45px;
+                    border:none;
+                    border-radius:20px;
+                    background:#222;
+                    color:white;
+                    font-size:20px;
+                    cursor:pointer;">
+                تسبيح
+            </button>
+
+            <br><br>
+
+            <button onclick="resetTasbih()"
+                    style="
+                    padding:12px 25px;
+                    border:none;
+                    border-radius:15px;
+                    cursor:pointer;">
+                Zurücksetzen
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EINSTELLUNGEN
+========================= -->
+
+<section id="settingsPage" class="page">
+
+    <div class="settings">
+
+        <button class="back"
+                onclick="goHome()">
+            ← Zurück
+        </button>
+
+        <h1 style="margin-bottom:25px;">
+            ⚙️ Einstellungen
+        </h1>
+
+
+        <div class="setting">
+
+            <div class="setting-title">
+                Sprache / اللغة
+            </div>
+
+            <div class="language-buttons">
+
+                <button onclick="setLanguage('de')">
+                    🇩🇪 Deutsch
+                </button>
+
+                <button onclick="setLanguage('ar')">
+                    🇸🇦 العربية
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-title">
+                Über die App
+            </div>
+
+            <p>
+                Meine Islam App
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   SEITENWECHSEL
+========================= */
+
+function openPage(pageId) {
+
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId)
+        .classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+function goHome() {
+    openPage("homePage");
+}
+
+
+/* =========================
+   TASBIH
+========================= */
+
+let tasbih = 0;
+
+function increaseTasbih() {
+
+    tasbih++;
+
+    document.getElementById("counter")
+        .textContent = tasbih;
+}
+
+
+function resetTasbih() {
+
+    tasbih = 0;
+
+    document.getElementById("counter")
+        .textContent = tasbih;
+}
+
+
+/* =========================
+   SPRACHE
+========================= */
+
+function setLanguage(language) {
+
+    if (language === "ar") {
+
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+
+        document.getElementById("appName")
+            .textContent = "تطبيق الإسلام";
+
+        document.getElementById("welcomeTitle")
+            .textContent = "مرحباً";
+
+        document.getElementById("welcomeText")
+            .textContent = "اختر ما تريد قراءته أو فعله اليوم";
+
+        document.getElementById("quranText")
+            .textContent = "القرآن";
+
+        document.getElementById("adhkarText")
+            .textContent = "الأذكار";
+
+        document.getElementById("sleepText")
+            .textContent = "النوم";
+
+        document.getElementById("prayerText")
+            .textContent = "الصلاة";
+
+        document.getElementById("tasbihText")
+            .textContent = "التسبيح";
+
+    } else {
+
+        document.documentElement.lang = "de";
+        document.documentElement.dir = "ltr";
+
+        document.getElementById("appName")
+            .textContent = "Meine Islam App";
+
+        document.getElementById("welcomeTitle")
+            .textContent = "Willkommen";
+
+        document.getElementById("welcomeText")
+            .textContent =
+            "Wähle aus, was du heute lesen oder machen möchtest.";
+
+        document.getElementById("quranText")
+            .textContent = "Qur'an";
+
+        document.getElementById("adhkarText")
+            .textContent = "Adhkar";
+
+        document.getElementById("sleepText")
+            .textContent = "Schlafen";
+
+        document.getElementById("prayerText")
+            .textContent = "Gebete";
+
+        document.getElementById("tasbihText")
+            .textContent = "Tasbih";
+    }
+}
+
+</script>
+
+</body>
+</html>
